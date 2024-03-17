@@ -6,26 +6,30 @@ import Hero from "@/components/sections/Hero.astro";
 import Projects from "@/components/sections/Projects.astro";
 import Skills from "@/components/sections/Skills.astro";
 import Layout from "@/layouts/Layout.astro";
+
+import KeyboardManager from "@/components/KeyboardManager.astro";
+
+import { basics } from "@cv";
+const { name, label } = basics;
 ---
 
-<Layout title="Portfolio alexsh-dev">
+<Layout title=`Portfolio de ${name} - ${label}`>
   <main class="p-16 m-auto w-full">
     <Hero />
     <About />
     <Experience />
     <Education />
     <Projects />
-	<Skills />
+    <Skills />
+    <KeyboardManager />
   </main>
 </Layout>
 
 <style>
   main {
-    @apply m-auto p-16 w-full
+    @apply m-auto p-16 w-full;
   }
 </style>
-
-
 
 <script>
   const details = document.querySelectorAll("details");
@@ -34,6 +38,5 @@ import Layout from "@/layouts/Layout.astro";
   });
   window.addEventListener("afterprint", function () {
     details?.forEach((detail) => detail.removeAttribute("open"));
-    
   });
 </script>
