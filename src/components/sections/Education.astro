@@ -1,13 +1,11 @@
 ---
-import Section from "@/components/Section.astro"
+import Section from "@/components/Section.astro";
 
-import { education } from "@cv"
-
-
+import { education } from "@cv";
 ---
-<!-- Se copió Experience, de modo que te sientas libre de cambiar específicamente esta sección -->
 
-<Section title="Education">    
+<!-- Se copió Experience, de modo que te sientas libre de cambiar específicamente esta sección -->
+<Section title="Education">
   <ul>
     {
       education.map(
@@ -47,47 +45,34 @@ import { education } from "@cv"
   </ul>
 </Section>
 
+<style>
+  article {
+    @apply mb-4;
+  }
 
-<script>
+  article h3 {
+    @apply text-gray-800 font-medium;
+  }
+  article h4 {
+    @apply text-gray-700 font-normal;
+  }
 
-    const details = document.querySelector("details");
-    window.addEventListener("beforeprint", function () {
-      details?.setAttribute("open", "");
-    });
-    window.addEventListener("afterprint", function () {
-      details?.removeAttribute("open");
-    });
-  </script>
-  
-  <style>
-    article {
-      @apply mb-4;
-    }
-  
-    article h3 {
-      @apply text-gray-800 font-medium;
-    }
-    article h4 {
-      @apply text-gray-700 font-normal;
-    }
-  
-    details summary {
-      @apply cursor-pointer text-sm my-2;
-    }
-  
-    details ul {
-      @apply list-disc pl-8 my-0 gap-0 text-sm text-gray-500;
-    }
-  
-    header {
-      @apply flex justify-between items-start;
-    }
-  
-    ul {
-      @apply flex flex-col;
-    }
-    time {
-      @apply text-gray-400;
-    }
-  </style>
-  
+  details summary {
+    @apply cursor-pointer text-sm my-2;
+  }
+
+  details ul {
+    @apply list-disc pl-8 my-0 gap-0 text-sm text-gray-500;
+  }
+
+  header {
+    @apply flex justify-between items-start;
+  }
+
+  ul {
+    @apply flex flex-col;
+  }
+  time {
+    @apply text-gray-400;
+  }
+</style>

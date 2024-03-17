@@ -44,17 +44,6 @@ import { work } from "@cv";
   </ul>
 </Section>
 
-<script>
-
-  const details = document.querySelector("details");
-  window.addEventListener("beforeprint", function () {
-    details?.setAttribute("open", "");
-  });
-  window.addEventListener("afterprint", function () {
-    details?.removeAttribute("open");
-  });
-</script>
-
 <style>
   article {
     @apply mb-4;

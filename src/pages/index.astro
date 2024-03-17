@@ -24,3 +24,16 @@ import Layout from "@/layouts/Layout.astro";
     @apply m-auto p-16 w-full
   }
 </style>
+
+
+
+<script>
+  const details = document.querySelectorAll("details");
+  window.addEventListener("beforeprint", function () {
+    details?.forEach((detail) => detail.setAttribute("open", ""));
+  });
+  window.addEventListener("afterprint", function () {
+    details?.forEach((detail) => detail.removeAttribute("open"));
+    
+  });
+</script>
