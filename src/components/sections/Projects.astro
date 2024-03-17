@@ -1,7 +1,66 @@
 ---
-import Section from "@/components/Section.astro"
+import Section from "@/components/Section.astro";
+
+import { projects } from "@cv";
 ---
 
-<Section>
-    
+<Section title="Projects">
+  <ul>
+    {
+      projects.map(
+        ({ url, highlights, description, endDate, name, startDate }) => {
+          return (
+            <li>
+              <article>
+                <header>
+                  <h2>
+                    <a href={url} title={`Ver el proyecto ${name}`}>
+                      {name}
+                    </a>
+                    {!endDate ? <span>&bull;</span> : ""}
+                  </h2>
+                  <p>{description}</p>
+                </header>
+                <footer>
+                  {highlights.map((highlight) => {
+                    return <span>{highlight}</span>;
+                  })}
+                </footer>
+              </article>
+            </li>
+          );
+        }
+      )
+    }
+  </ul>
 </Section>
+
+<style>
+  ul {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+  }
+
+  article {
+    @apply flex flex-col border border-solid border-gray-100 rounded-lg p-4 h-full gap-4;
+  }
+
+  article a {
+    @apply text-black font-bold text-lg hover:underline;
+  }
+
+  article header {
+    @apply flex-1;
+  }
+
+  article header h2 {
+    @apply text-xl text-green-400;
+  }
+
+  footer {
+    @apply flex flex-wrap gap-2;
+  }
+
+  footer span {
+    @apply bg-gray-200 text-black border px-2 py-1 rounded-md text-xs font-medium hover:bg-gray-300;
+  }
+</style>
