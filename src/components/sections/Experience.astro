@@ -1,7 +1,88 @@
 ---
-import Section from "@/components/Section.astro"
+import Section from "@/components/Section.astro";
+
+import { work } from "@cv";
 ---
 
-<Section>
-    
+<Section title="Experience">
+  <ul>
+    {
+      work.map(
+        ({ name, position, startDate, endDate, summary, highlights }) => {
+          const starYear = new Date(startDate).getFullYear();
+          const endYear = endDate ? new Date(endDate).getFullYear() : "Actual";
+          const duration = `${starYear} - ${endYear}`;
+          return (
+            <li>
+              <article>
+                <header>
+                  <div>
+                    <h2>{name}</h2>
+                    <h3>{position}</h3>
+                  </div>
+                  <time>{duration}</time>
+                </header>
+                <footer>
+                  <p>{summary}</p>
+                  {highlights?.length != 0 && (
+                    <details>
+                      <summary>Highlights</summary>
+                      <ul>
+                        {highlights.map((highlight) => (
+                          <li>{highlight}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
+                </footer>
+              </article>
+            </li>
+          );
+        }
+      )
+    }
+  </ul>
 </Section>
+
+<script>
+
+  const details = document.querySelector("details");
+  window.addEventListener("beforeprint", function () {
+    details?.setAttribute("open", "");
+  });
+  window.addEventListener("afterprint", function () {
+    details?.removeAttribute("open");
+  });
+</script>
+
+<style>
+  article {
+    @apply mb-4;
+  }
+
+  article h3 {
+    @apply text-gray-800 font-medium;
+  }
+  article h4 {
+    @apply text-gray-700 font-normal;
+  }
+
+  details summary {
+    @apply cursor-pointer text-sm my-2;
+  }
+
+  details ul {
+    @apply list-disc pl-8 my-0 gap-0 text-sm text-gray-500;
+  }
+
+  header {
+    @apply flex justify-between items-start;
+  }
+
+  ul {
+    @apply flex flex-col;
+  }
+  time {
+    @apply text-gray-400;
+  }
+</style>
