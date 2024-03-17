@@ -1,0 +1,95 @@
+---
+import { basics } from "@cv";
+
+import Section from "@/components/Section.astro";
+
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import Github from "@/icons/Github.astro";
+import Instagram from "@/icons/Instagram.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import WorldMap from "@/icons/WorldMap.astro";
+import X from "@/icons/X.astro";
+
+const { name, label, location, email, phone, image, profiles } = basics;
+const { city, region } = location;
+
+const SOCIAL_ICONS: Record<string, any> = {
+  Github,
+  Instagram,
+  LinkedIn,
+  WorldMap,
+  X,
+};
+---
+
+<Section>
+  <div class="flex justify-between gap-4">
+    <div class="flex flex-col gap-2">
+      <h1 class="text-4xl">{name}</h1>
+      <h2 class="text-xl text-balance font-medium text-gray-600">{label}</h2>
+      <span
+        class="flex items-center text-gray-500 gap-1 text-sm tracking-tighter"
+      >
+        <WorldMap />
+        {city}, {region}
+      </span>
+      <footer class="flex gap-2 mt-2">
+        {
+          email && (
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
+              rel="noopener noreferrer"
+            >
+              <Mail />
+            </a>
+          )
+        }
+        {
+          phone && (
+            <a
+              href={`tel:${phone}`}
+              target="_blank"
+              title={`Llamar a ${name} al número ${phone}`}
+              rel="noopener noreferrer"
+            >
+              <Phone />
+            </a>
+          )
+        }
+        {
+          profiles.map(({ network, url, username }) => {
+            const Icon = SOCIAL_ICONS[network];
+            return (
+              Icon && (
+                <a
+                  href={url}
+                  target="_blank"
+                  title={`Visitar el perfil de ${name} en ${network}`}
+                  rel="noopener noreferrer"
+                >
+                  <Icon />
+                </a>
+              )
+            );
+          })
+        }
+      </footer>
+    </div>
+    <figure>
+      <img
+        class="rounded-2xl aspect-square w-32 object-cover"
+        src={image}
+        alt={name}
+      />
+    </figure>
+  </div>
+</Section>
+
+<style>
+  footer a {
+    @apply text-gray-500  text-sm inline-flex items-center gap-1 border border-solid border-[#eee] rounded-md transition-all hover:bg-[#eee] hover:text-gray-600 p-1;
+  }
+</style>
