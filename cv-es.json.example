@@ -1,12 +1,12 @@
 {
     "basics": {
-      "name": "John Doe",
-      "label": "Programmer",
-      "image": "",
-      "email": "john@gmail.com",
+      "name": "Jane Doe",
+      "label": "Desarrollo de Software",
+      "image": "/me.png",
+      "email": "johndoe@gmail.com",
       "phone": "(912) 555-4321",
       "url": "https://johndoe.com",
-      "summary": "A summary of John Doe…",
+      "summary": "A summary of John Doe, a jr software engineer with experience in multiple technologies and business domains.",
       "location": {
         "address": "2712 Broadway St",
         "postalCode": "CA 94115",
