@@ -66,6 +66,7 @@ const SOCIAL_ICONS: Record<string, any> = {
 `,
 };
 
+
 const profilesInfo = profiles.map(({ network, url }) => {
   const Icon = SOCIAL_ICONS[network];
   const firstLetter = network.charAt(0).toUpperCase();
@@ -89,13 +90,24 @@ const profilesInfo = profiles.map(({ network, url }) => {
 </ninja-keys>
 
 <script>
+  interface Info {
+    id: string
+    section: string
+    title: string
+    url: string
+    icon: string
+    hotkey: string
+    handler?: () => void
+  }
+
   import "ninja-keys";
 
   const ninjaKeys = document.querySelector("ninja-keys");
 
   if (ninjaKeys != null) {
     const info = ninjaKeys.getAttribute("data-info") ?? "[]";
-    const parsedInfo = JSON.parse(info);
+    
+    const parsedInfo = JSON.parse(info) as Info[];
 
     const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
       return {
