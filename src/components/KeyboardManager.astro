@@ -3,7 +3,7 @@ import { basics } from "@cv";
 
 const { profiles } = basics;
 
-const SOCIAL_ICONS: Record<string, any> = {
+const SOCIAL_ICONS: Record<string, string | any> = {
   Github: `<svg
   width="16"
   height="16"  
@@ -66,8 +66,16 @@ const SOCIAL_ICONS: Record<string, any> = {
 `,
 };
 
+type ProfileInfo = {
+  id:string;
+  section: string;
+  title: string;
+  url: string;
+  icon:string;
+  hotkey: string;
+};
 
-const profilesInfo = profiles.map(({ network, url }) => {
+const profilesInfo: ProfileInfo[] = profiles.map(({ network, url }) => {
   const Icon = SOCIAL_ICONS[network];
   const firstLetter = network.charAt(0).toUpperCase();
 
@@ -91,13 +99,13 @@ const profilesInfo = profiles.map(({ network, url }) => {
 
 <script>
   interface Info {
-    id: string
-    section: string
-    title: string
-    url: string
-    icon: string
-    hotkey: string
-    handler?: () => void
+    id: string;
+    section: string;
+    title: string;
+    url: string;
+    icon: string;
+    hotkey: string;
+    handler?: () => void;
   }
 
   import "ninja-keys";
@@ -106,7 +114,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
 
   if (ninjaKeys != null) {
     const info = ninjaKeys.getAttribute("data-info") ?? "[]";
-    
+
     const parsedInfo = JSON.parse(info) as Info[];
 
     const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
