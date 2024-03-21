@@ -66,6 +66,14 @@ const SOCIAL_ICONS: Record<string, any> = {
 `,
 };
 
+type ProfileInfo = {
+  id:string;
+  section:string;
+  title: string;
+  url: string;
+  icon: string;
+  hotkey: string;
+};
 const profilesInfo = profiles.map(({ network, url }) => {
   const Icon = SOCIAL_ICONS[network];
   const firstLetter = network.charAt(0).toUpperCase();
